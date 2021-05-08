@@ -1,5 +1,10 @@
 # ELK docker POC
 
+## Docker Swarm cluster init
+
+https://docs.docker.com/engine/swarm/swarm-tutorial/create-swarm/
+
+
 ## Sample app
 
 ### Build
@@ -58,5 +63,19 @@ All applications that we want to collect the logs from should have their logs di
 
 ![alt text](readme_img/binding.png?raw=true "Volume Binding")
 
-After this just run docker-compose file
 
+## Deploy
+
+`docker stack deploy -c elk/docker-compose.yml elk`
+
+
+## Test
+
+For the testing purposes we will run two instances of our test application, check that the source of log volume is the same as your fluent-bit log volume (see volumes section).
+
+```
+  volumes:
+    - type: bind
+      source: ./elk/logs
+      target: /home/salmen/logs
+```
