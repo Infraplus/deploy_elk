@@ -56,5 +56,7 @@ All applications that we want to collect the logs from should have their logs di
       target: /fluent-bit/etc
 ```
 
+![alt text](readme_img/binding.png?raw=true "Volume Binding")
+
 After this just run docker-compose file
 
