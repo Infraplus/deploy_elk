@@ -9,7 +9,7 @@ https://docs.docker.com/engine/swarm/swarm-tutorial/create-swarm/
 
 ### Build
 
-In docker folder you will find the `helloworld.py` file and the `Dockerfile` to build our test app.
+In docker folder you will find the `helloworld.py` file and the `Dockerfile` to build our test app. For the testing purpose, tag the application `hellostranger` when building it.
 
 
 ### How it works
