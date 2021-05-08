@@ -1,6 +1,0 @@
-{"time": "08/05/2021:21:38:37", "ip": "172.30.0.1", "request": "GET", "path": "/helloworld?", "return": "Hello Stranger", "status_code": 200}
-{"time": "08/05/2021:21:39:29", "ip": "172.30.0.1", "request": "GET", "path": "/helloworld?", "return": "Hello Stranger", "status_code": 200}
-{"time": "08/05/2021:21:39:55", "ip": "172.30.0.1", "request": "GET", "path": "/helloworld?name=JoraGnida", "return": "Hello Jora Gnida", "status_code": 200}
-{"time": "08/05/2021:21:40:11", "ip": "172.30.0.1", "request": "GET", "path": "/helloworld?name=JoraGnida", "return": "Hello Jora Gnida", "status_code": 200}
-{"time": "08/05/2021:21:42:39", "ip": "192.168.32.1", "request": "GET", "path": "/helloworld?name=JoraGnida", "return": "Hello Jora Gnida", "status_code": 200}
-{"time": "08/05/2021:21:42:46", "ip": "192.168.32.1", "request": "GET", "path": "/helloworld?name=SalmenHitana", "return": "Hello Salmen Hitana", "status_code": 200}
