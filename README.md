@@ -12,7 +12,7 @@ https://www.scaleway.com/en/docs/how-to-configure-storage-with-glusterfs-on-ubun
 
 ### Build
 
-In docker folder you will find the `helloworld.py` file and the `Dockerfile` to build our test app. For the testing purpose, tag the application `hellostranger` when building it.
+In app folder you will find the `helloworld.py` file, the `Dockerfile` to build our test app and the docker-compose file for the swarm cluster. For the testing purpose, tag the application `hellostranger` when building it.
 
 
 ### How it works
@@ -39,7 +39,7 @@ Before running the `ELK` stack please be sure to have `vm.max_map_count` variabl
 
 ### Volumes
 
-By default the `docker-compose` file will search for the `logs`, `fluent-config` and `es-vol` directories as bind volumes in `elk` folder, their path will be marked in the `docker-compose file`. Please make sure you create the directories on your NFS partitions and modify the `source` field that corresponds to the bind volumes. The `fluent-config` contains the 2 config files needed for the log collector to work properly: 1. `fluent-bit.conf` and 2. `parsers.conf`, please make sure to copy them into the newly created directories on your NFS partitions.
+By default the `docker-compose` file inside `elk` folder will search for the `logs`, `fluent-config` and `es-vol` directories as bind volumes, their path must be marked in the `docker-compose file`. Please make sure you create the directories on your NFS/GlusterFS partitions and modify the `source` field that corresponds to the bind volumes. The `fluent-config` contains the 2 config files needed for the log collector to work properly: 1. `fluent-bit.conf` and 2. `parsers.conf`, please make sure to copy them into the newly created directories on your NFS/GlusterFS partitions.
 
 All applications that we want to collect the logs from should have their logs directories attached to the `logs` volume of the fluent-bit.
 
@@ -48,7 +48,7 @@ All applications that we want to collect the logs from should have their logs di
 ```
   volumes:
     - type: bind
-      source: ./es-vol
+      source: <GlusterFS mount directory>
       target: /usr/share/elasticsearch/data
 ```
 
@@ -57,10 +57,10 @@ All applications that we want to collect the logs from should have their logs di
 ```
   volumes:
     - type: bind
-      source: ./logs
+      source: <GlusterFS mount directory>
       target: /var/log
     - type: bind
-      source: ./fluent-config
+      source: <GlusterFS mount directory>
       target: /fluent-bit/etc
 ```
 
@@ -74,11 +74,11 @@ All applications that we want to collect the logs from should have their logs di
 
 ## Test
 
-For the testing purposes we will run two instances of our test application, check that the source of log volume is the same as your fluent-bit log volume (see volumes section).
+For the testing purposes we will run two instances of our test application, check that the source of logs volume is the same as your `fluent-bit` logs volume (see volumes section).
 
 ```
   volumes:
     - type: bind
-      source: ./elk/logs
+      source: <GlusterFS mount directory>
       target: /home/salmen/logs
 ```
