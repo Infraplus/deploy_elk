@@ -4,6 +4,9 @@
 
 https://docs.docker.com/engine/swarm/swarm-tutorial/create-swarm/
 
+## GlusterFS install
+
+https://www.scaleway.com/en/docs/how-to-configure-storage-with-glusterfs-on-ubuntu/
 
 ## Sample app
 
