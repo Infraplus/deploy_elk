@@ -1,4 +1,4 @@
-version: "3.3"
+version: "3.8"
 services:
   es:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.12.0
@@ -8,17 +8,18 @@ services:
     environment:
     - cluster.name=es-standalone
     - node.name=es
-    - bootstrap.memory_lock=true
+#    - bootstrap.memory_lock=true
     - discovery.seed_hosts=es
     - cluster.initial_master_nodes=es
     - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    - LimitMEMLOCK=infinity
     ulimits:
       memlock:
         soft: -1
         hard: -1
     volumes:
     - type: bind
-      source: /mnt/glusterfs/es-vol 
+      source: /opt/data/ELK/es-vol 
       target: /usr/share/elasticsearch/data
   kibana:
     image: docker.elastic.co/kibana/kibana:7.12.0
@@ -38,10 +39,10 @@ services:
     - "2020:2020"
     volumes:
     - type: bind
-      source: /mnt/glusterfs/logs
+      source: /opt/data/ELK/fluent/logs
       target: /var/log
     - type: bind
-      source: /mnt/glusterfs/fluent-config
+      source: /opt/data/ELK/fluent/fluent-config
       target: /fluent-bit/etc
     depends_on:
     - kibana
